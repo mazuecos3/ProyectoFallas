@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Nuestro NodeJS">
+    <meta name="keywords" content="html nodejs">
+    <!-- Librerias -->
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.6.0/proj4.js"></script>
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
+    <title>Fallas Valencia</title>
+
+    <script src="js/main.js"></script>
+    <style>
+        @import url("css/main.css");
+    </style>
+
+</head>
+
+<body>
+
+    <div class="busqueda">
+        <h1> Fallas Valencia</h1>
+        <form id="busquedaform">
+            <p>Sección</p>
+            <select name="section" class="section" id="section">
+                <option value="Todas">Todas</option> 
+            </select><br>
+            <p>Año de funación</p>
+            <input class="section" id="fecha1" type="number" min="1800" max="2019" name="año" placeholder="Desde"><br>
+            <input class="section" id="fecha2" type="number" min="1800" max="2019" name="año1" placeholder="Hasta"><br><br>
+
+            <input type="radio" id="fallaPrincipal" name="fallaPri" value="principal" checked="checked"> Principal<br>
+            <input type="radio" id="fallaInfantil" name="fallaPri" value="infantil"> Infantil<br>
+
+        </form>
+
+
+    </div>
+
+    <div class="resultados" id="resultados">
+
+    </div>
+
+    <div id="map">
+    </div>
+
+
+
+</body>
+
+</html>
