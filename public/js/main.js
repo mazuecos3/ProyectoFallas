@@ -66,9 +66,12 @@ function getCoordinates(coordenadas) {
 }
 
 function clicarFuera() {
+
     let capa = document.getElementById("map");
     document.addEventListener("click", function(e) {
         console.log('clic');
+        e.preventDefault();
+        e.stopPropagation();
         //obtiendo informacion del DOM para  
         let clic = e.target;
         console.log(clic);
@@ -76,7 +79,7 @@ function clicarFuera() {
             capa.style.visibility == "hidden";
             console.log("hola");
         }
-    }, false);
+    });
 }
 
 function buscar() {
