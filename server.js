@@ -1,7 +1,7 @@
 const express = require('express');
 const path = require('path');
 const app = express();
-
+//para que heroku elija el puerto que tenga libre
 let puerto = process.env.PORT;
 
 // Paginas publicas (estaticas)
