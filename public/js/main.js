@@ -23,6 +23,11 @@ function crearMapa() {
         attribution: 'Map data © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>, Imagery © <a href="http://www.kartena.se/">Kartena</a>',
     }).addTo(map);
 
+    L.control.scale().addTo(map);
+
+
+
+
 }
 //Funcion que llamamos cada vez que clickamos y va a cambiar la ubicación
 //de el mapa dependiendo de la falla pulsada
@@ -32,7 +37,7 @@ function cambiarCoordinates(idFalla) {
     console.log("normales " + misCoordenadas.get(idFalla));
     console.log("buenas " + getCoordinates(misCoordenadas.get(idFalla)));
     map.setView(getCoordinates(misCoordenadas.get(idFalla)), 25);
-
+    L.marker(getCoordinates(misCoordenadas.get(idFalla)), { draggable: true }).addTo(map);
 
 
 }
