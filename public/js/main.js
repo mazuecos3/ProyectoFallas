@@ -1,7 +1,7 @@
 // Direccion json web
 const fuentesUrl = "http://mapas.valencia.es/lanzadera/opendata/Monumentos_falleros/JSON";
 let resultadoJSON;
-
+let principalBoolean = false;
 let divTodasFallas = document.createElement("div");
 divTodasFallas.classList.add("fallas");
 
@@ -153,43 +153,45 @@ function principal() {
         let boceto;
 
         // RANGO FECHAS   
-        // if (fecha1.value < fecha2.value &&
-        //     fecha1.value <= fallas.properties.anyo_fundacion &&
-        //     fecha2.value >= fallas.properties.anyo_fundacion) {
+        if (fecha1.value < fecha2.value &&
+            fecha1.value <= fallas.properties.anyo_fundacion &&
+            fecha2.value >= fallas.properties.anyo_fundacion) {
+            //establecemos un boleano y dependiendo si está en true 
+            //quitaremos la imagen de fondo
+            principalBoolean = true;
+            if (secciones.value == "Todas") {
+                //Si esta pulsado el radiobutton de la falla pirncipal establecemos las fotos de las fallas principales.
+                if (principalChecked) {
+                    cargarFalla(fallas.properties.boceto, fallas.properties.nombre, fallas.properties.id, fallas.properties.anyo_fundacion, fallas.properties.sector);
 
-        if (secciones.value == "Todas") {
-            //Si esta pulsado el radiobutton de la falla pirncipal establecemos las fotos de las fallas principales.
-            if (principalChecked) {
-                cargarFalla(fallas.properties.boceto, fallas.properties.nombre, fallas.properties.id, fallas.properties.anyo_fundacion);
-                if (fallas.properties.id == ids.value) {
+                } //Si esta pulsado el radiobutton de la falla infantil establecemos las fotos de las fallas infantil.
+                else {
+                    cargarFalla(fallas.properties.boceto_i, fallas.properties.nombre, fallas.properties.id, fallas.properties.anyo_fundacion, fallas.properties.sector);
 
                 }
-            } //Si esta pulsado el radiobutton de la falla infantil establecemos las fotos de las fallas infantil.
-            else {
-                cargarFalla(fallas.properties.boceto_i, fallas.properties.nombre, fallas.properties.id, fallas.properties.anyo_fundacion);
-
-            }
-            //depende de el valor de la seccion se mostrará aquellos que entren en esa seccion.
-        } else if (fallas.properties.seccion == secciones.value) {
-            //Si esta pulsado el radiobutton de la falla pirncipal establecemos las fotos de las fallas principales.
-            if (principalChecked) {
-                cargarFalla(fallas.properties.boceto, fallas.properties.nombre, fallas.properties.id, fallas.properties.anyo_fundacion);
-            }
-            //Si esta pulsado el radiobutton de la falla infantil establecemos las fotos de las fallas infantil.
-            else {
-                cargarFalla(fallas.properties.boceto_i, fallas.properties.nombre, fallas.properties.id, fallas.properties.anyo_fundacion);
+                //depende de el valor de la seccion se mostrará aquellos que entren en esa seccion.
+            } else if (fallas.properties.seccion == secciones.value) {
+                //Si esta pulsado el radiobutton de la falla pirncipal establecemos las fotos de las fallas principales.
+                if (principalChecked) {
+                    cargarFalla(fallas.properties.boceto, fallas.properties.nombre, fallas.properties.id, fallas.properties.anyo_fundacion, fallas.properties.sector);
+                }
+                //Si esta pulsado el radiobutton de la falla infantil establecemos las fotos de las fallas infantil.
+                else {
+                    cargarFalla(fallas.properties.boceto_i, fallas.properties.nombre, fallas.properties.id, fallas.properties.anyo_fundacion, fallas.properties.sector);
+                }
             }
         }
-        // }
     });
 
     // Lo establecemos en blanco cada vez que se haga la funcion para hacer efecto refrescar.
     divResultados.innerHTML = "";
     //Añadimos las falla al div principal de los resultados.
     divResultados.appendChild(divTodasFallas);
+
 }
 
-function cargarFalla(boceto, nombreFalla, id, anyo) {
+function cargarFalla(boceto, nombreFalla, id, anyo, sector) {
+
 
     let divFalla = document.createElement("div");
     divFalla.classList.add("falla");
@@ -200,6 +202,9 @@ function cargarFalla(boceto, nombreFalla, id, anyo) {
 
     let nombre = document.createElement("p");
     nombre.innerText = "Nombre: " + nombreFalla;
+
+    let zona = document.createElement("p");
+    zona.innerText = sector;
 
     let anyoF = document.createElement("p");
     anyoF.innerText = "Año Fundación: " + anyo;
@@ -215,6 +220,7 @@ function cargarFalla(boceto, nombreFalla, id, anyo) {
 
     divFalla.appendChild(imagen);
     divFalla.appendChild(nombre);
+    divFalla.appendChild(zona);
     divFalla.appendChild(anyoF);
     divFalla.appendChild(botonUbi);
 
@@ -222,6 +228,15 @@ function cargarFalla(boceto, nombreFalla, id, anyo) {
     divTodasFallas.appendChild(divFalla);
     // Una vez cargadas las fallas creamos mapa
     crearMapas();
+    //Quitamos imagen fondo después de cargar las fallas y mapas
+    if (principalBoolean == true) {
+        //Función para deshabilitar la imagen de fondo
+        document.getElementById("imgBackground").style.display = "none";
+    } else {
+        //Función para habilitar la imagen de fondo
+        document.getElementById("imgBackground").style.display = "block";
+    }
+
 
 
 
