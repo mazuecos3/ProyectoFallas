@@ -15,31 +15,30 @@ let map;
 
 //Creamos el mapa
 function crearMapa() {
-
     map = L.map("map");
 
     let tilerMapUrl = 'https://api.maptiler.com/maps/streets/256/{z}/{x}/{y}.png?key=iKFTul3NW3eysK9xpmVO';
     L.tileLayer(tilerMapUrl, {
-        attribution: 'Map data © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>, Imagery © <a href="http://www.kartena.se/">Kartena</a>',
+        attribution: 'Map data ©Copyright Oscar Mazuecos',
     }).addTo(map);
 
     L.control.scale().addTo(map);
-
-
-
 
 }
 //Funcion que llamamos cada vez que clickamos y va a cambiar la ubicación
 //de el mapa dependiendo de la falla pulsada
 function cambiarCoordinates(idFalla) {
+
     let resultadoMapa = document.getElementById("map");
     resultadoMapa.style.visibility = "visible";
-    console.log("normales " + misCoordenadas.get(idFalla));
-    console.log("buenas " + getCoordinates(misCoordenadas.get(idFalla)));
+    /*console.log("normales " + misCoordenadas.get(idFalla));
+    console.log("buenas " + getCoordinates(misCoordenadas.get(idFalla)));*/
+    //establecer las coordenadas modificadas
     map.setView(getCoordinates(misCoordenadas.get(idFalla)), 25);
+    //añadir punto de ubicación
     L.marker(getCoordinates(misCoordenadas.get(idFalla)), { draggable: true }).addTo(map);
 
-
+    clicarFuera();
 }
 
 
@@ -68,21 +67,24 @@ function getCoordinates(coordenadas) {
     coordenadas = proj4(projection1, projection2, coordenadas);
 
     return [coordenadas[1], coordenadas[0]];
+
 }
 
 function clicarFuera() {
 
-    let capa = document.getElementById("map");
+
+    let resultadoMapa = document.getElementById("map");
     document.addEventListener("click", function(e) {
-        console.log('clic');
-        e.preventDefault();
         e.stopPropagation();
-        //obtiendo informacion del DOM para  
+        console.log('clic');
+        //A quien hacemos click
         let clic = e.target;
         console.log(clic);
-        if (capa.style.visibility == "visible" && clic != capa) {
-            capa.style.visibility == "hidden";
-            console.log("hola");
+        //si es distinto de el mapa que lo esconda
+        if (clic != resultadoMapa) {
+            console.log("ante")
+            resultadoMapa.style.visibility == "hidden";
+            console.log("despues")
         }
     });
 }
@@ -151,34 +153,34 @@ function principal() {
         let boceto;
 
         // RANGO FECHAS   
-        if (fecha1.value < fecha2.value &&
-            fecha1.value <= fallas.properties.anyo_fundacion &&
-            fecha2.value >= fallas.properties.anyo_fundacion) {
+        // if (fecha1.value < fecha2.value &&
+        //     fecha1.value <= fallas.properties.anyo_fundacion &&
+        //     fecha2.value >= fallas.properties.anyo_fundacion) {
 
-            if (secciones.value == "Todas") {
-                //Si esta pulsado el radiobutton de la falla pirncipal establecemos las fotos de las fallas principales.
-                if (principalChecked) {
-                    cargarFalla(fallas.properties.boceto, fallas.properties.nombre, fallas.properties.id, fallas.properties.anyo_fundacion);
-                    if (fallas.properties.id == ids.value) {
-
-                    }
-                } //Si esta pulsado el radiobutton de la falla infantil establecemos las fotos de las fallas infantil.
-                else {
-                    cargarFalla(fallas.properties.boceto_i, fallas.properties.nombre, fallas.properties.id, fallas.properties.anyo_fundacion);
+        if (secciones.value == "Todas") {
+            //Si esta pulsado el radiobutton de la falla pirncipal establecemos las fotos de las fallas principales.
+            if (principalChecked) {
+                cargarFalla(fallas.properties.boceto, fallas.properties.nombre, fallas.properties.id, fallas.properties.anyo_fundacion);
+                if (fallas.properties.id == ids.value) {
 
                 }
-                //depende de el valor de la seccion se mostrará aquellos que entren en esa seccion.
-            } else if (fallas.properties.seccion == secciones.value) {
-                //Si esta pulsado el radiobutton de la falla pirncipal establecemos las fotos de las fallas principales.
-                if (principalChecked) {
-                    cargarFalla(fallas.properties.boceto, fallas.properties.nombre, fallas.properties.id, fallas.properties.anyo_fundacion);
-                }
-                //Si esta pulsado el radiobutton de la falla infantil establecemos las fotos de las fallas infantil.
-                else {
-                    cargarFalla(fallas.properties.boceto_i, fallas.properties.nombre, fallas.properties.id, fallas.properties.anyo_fundacion);
-                }
+            } //Si esta pulsado el radiobutton de la falla infantil establecemos las fotos de las fallas infantil.
+            else {
+                cargarFalla(fallas.properties.boceto_i, fallas.properties.nombre, fallas.properties.id, fallas.properties.anyo_fundacion);
+
+            }
+            //depende de el valor de la seccion se mostrará aquellos que entren en esa seccion.
+        } else if (fallas.properties.seccion == secciones.value) {
+            //Si esta pulsado el radiobutton de la falla pirncipal establecemos las fotos de las fallas principales.
+            if (principalChecked) {
+                cargarFalla(fallas.properties.boceto, fallas.properties.nombre, fallas.properties.id, fallas.properties.anyo_fundacion);
+            }
+            //Si esta pulsado el radiobutton de la falla infantil establecemos las fotos de las fallas infantil.
+            else {
+                cargarFalla(fallas.properties.boceto_i, fallas.properties.nombre, fallas.properties.id, fallas.properties.anyo_fundacion);
             }
         }
+        // }
     });
 
     // Lo establecemos en blanco cada vez que se haga la funcion para hacer efecto refrescar.
@@ -232,7 +234,7 @@ function init() {
     //para que al entrar muestre todas las fallas principales directamente.
     buscar();
     crearMapa();
-    // clicarFuera();
+
     //Añadimos evento click a cada radiobutton.
     document.querySelectorAll(`input[name="fallaPri"]`)[0].addEventListener("click", principal);
     document.querySelectorAll(`input[name="fallaPri"]`)[1].addEventListener("click", principal);
