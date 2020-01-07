@@ -33,7 +33,10 @@ function cambiarCoordinates(idFalla) {
     document.body.appendChild(capaProtectora);
     let resultadoMapa = document.getElementById("map");
   
+    //hacer el div del mapa visible
     resultadoMapa.style.visibility = "visible";
+    //quitamos la funcionalidad a la ruleta para no poder ni bajar mientras el mapa este activo
+    document.body.style.overflow = "hidden";
     /*console.log("normales " + misCoordenadas.get(idFalla));
     console.log("buenas " + getCoordinates(misCoordenadas.get(idFalla)));*/
     //establecer las coordenadas modificadas
