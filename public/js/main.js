@@ -28,8 +28,11 @@ function crearMapa() {
 //Funcion que llamamos cada vez que clickamos y va a cambiar la ubicación
 //de el mapa dependiendo de la falla pulsada
 function cambiarCoordinates(idFalla) {
-
+    let capaProtectora = document.createElement("div");
+    capaProtectora.id = "capaProtectora";
+    document.body.appendChild(capaProtectora);
     let resultadoMapa = document.getElementById("map");
+  
     resultadoMapa.style.visibility = "visible";
     /*console.log("normales " + misCoordenadas.get(idFalla));
     console.log("buenas " + getCoordinates(misCoordenadas.get(idFalla)));*/
@@ -60,7 +63,7 @@ function crearMapas() {
 }
 
 function getCoordinates(coordenadas) {
-
+    console.log(coordenadas);
     // Cambiar la la referencia espacial coordenadas
     let projection1 = '+proj=utm +zone=30 +ellps=GRS80 +units=m +no_defs';
     let projection2 = '+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs';
@@ -71,21 +74,11 @@ function getCoordinates(coordenadas) {
 }
 
 function clicarFuera() {
-
-
     let resultadoMapa = document.getElementById("map");
-    document.addEventListener("click", function(e) {
-        e.stopPropagation();
-        console.log('clic');
-        //A quien hacemos click
-        let clic = e.target;
-        console.log(clic);
+    document.getElementById("capaProtectora").addEventListener("click", function(e) {
         //si es distinto de el mapa que lo esconda
-        if (clic != resultadoMapa) {
-            console.log("ante")
-            resultadoMapa.style.visibility == "hidden";
-            console.log("despues")
-        }
+        resultadoMapa.style.visibility = "hidden";
+        document.body.removeChild(capaProtectora);
     });
 }
 
@@ -243,7 +236,7 @@ function init() {
     //para que al entrar muestre todas las fallas principales directamente.
     buscar();
     crearMapa();
-
+   
     //Añadimos evento click a cada radiobutton.
     document.querySelectorAll(`input[name="fallaPri"]`)[0].addEventListener("click", principal);
     document.querySelectorAll(`input[name="fallaPri"]`)[1].addEventListener("click", principal);
