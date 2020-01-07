@@ -236,13 +236,7 @@ function cargarFalla(boceto, nombreFalla, id, anyo, sector) {
         //Función para habilitar la imagen de fondo
         document.getElementById("imgBackground").style.display = "block";
     }
-
-
-
-
-
 }
-
 //Funcion inicial
 function init() {
     //llamamos a la funcion buscar nada mas empezar porque el radiobuton principal va a estar pulsado por defecto
