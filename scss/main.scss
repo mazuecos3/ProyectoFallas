@@ -27,22 +27,15 @@
        }
        
        #map {
-           z-index: 100;
-           position: fixed;
-           /*nos posicionamos en el centro del navegador*/
-           top: 50%;
-           left: 50%;
-           /*determinamos una anchura*/
-           width: 45%;
-           /*indicamos que el margen izquierdo, es la mitad de la anchura*/
-           margin-left: -20%;
-           /*determinamos una altura*/
-           height: 50%;
-           /*indicamos que el margen superior, es la mitad de la altura*/
-           margin-top: -15%;
-           background-color: rgba(214, 203, 203, 0.801);
-           padding: 5px;
-           visibility: hidden;
+        z-index: 100;
+        position: fixed;
+        width: 70%;
+        height: 70%;
+        top: 15%;
+        left: 15%;
+        background-color: rgba(214,203,203,0.801);
+        padding: 5px;
+        visibility: hidden;
        }
        
        .busqueda {
