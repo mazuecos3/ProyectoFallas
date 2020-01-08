@@ -32,11 +32,16 @@ function cambiarCoordinates(idFalla) {
     capaProtectora.id = "capaProtectora";
     document.body.appendChild(capaProtectora);
     let resultadoMapa = document.getElementById("map");
-  
+
+
+
+
     //hacer el div del mapa visible
     resultadoMapa.style.visibility = "visible";
-    //quitamos la funcionalidad a la ruleta para no poder ni bajar mientras el mapa este activo
+    //quitamos la funcionalidad a la ruleta para no poder bajar ni subir  mientras el
+    // mapa este activo
     document.body.style.overflow = "hidden";
+
     /*console.log("normales " + misCoordenadas.get(idFalla));
     console.log("buenas " + getCoordinates(misCoordenadas.get(idFalla)));*/
     //establecer las coordenadas modificadas
@@ -79,9 +84,13 @@ function getCoordinates(coordenadas) {
 function clicarFuera() {
     let resultadoMapa = document.getElementById("map");
     document.getElementById("capaProtectora").addEventListener("click", function(e) {
-        //si es distinto de el mapa que lo esconda
+        //si el objetivo que hacemos click es distinto de el mapa, que lo esconda
         resultadoMapa.style.visibility = "hidden";
+        //Añadimos la funcionalidad a la ruleta para  poder subir 
+        //y bajar mientras el mapa este desactivado
+        document.body.style.overflow = "auto";
         document.body.removeChild(capaProtectora);
+
     });
 }
 
@@ -239,7 +248,7 @@ function init() {
     //para que al entrar muestre todas las fallas principales directamente.
     buscar();
     crearMapa();
-   
+
     //Añadimos evento click a cada radiobutton.
     document.querySelectorAll(`input[name="fallaPri"]`)[0].addEventListener("click", principal);
     document.querySelectorAll(`input[name="fallaPri"]`)[1].addEventListener("click", principal);
