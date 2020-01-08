@@ -214,6 +214,29 @@ function cargarFalla(boceto, nombreFalla, id, anyo, sector) {
     let anyoF = document.createElement("p");
     anyoF.innerText = "Año Fundación: " + anyo;
 
+    let starsP = document.createElement('p');
+    starsP.classList.add('puntuacion');
+
+    // Creamos dichas estrellas (radioButton, label)
+    for (let i = 0; i < 5; i++) {
+        let radio = document.createElement('input');
+        radio.setAttribute('type', "radio");
+        radio.setAttribute('id', 'radio' + i);
+        radio.setAttribute('name', 'estrellas');
+        radio.setAttribute('value', '' + i);
+        radio.classList.add('radioEstrellas');
+
+        let label = document.createElement('label');
+        label.setAttribute('for', 'radio' + i);
+        label.setAttribute('value', i);
+        label.innerText = '★';
+        label.addEventListener('click', enviarPuntuacion);
+        label.classList.add('labelEstrellas');
+
+        starsP.appendChild(radio);
+        starsP.appendChild(label);
+    }
+
     let botonUbi = document.createElement("button");
     botonUbi.innerText = "Ubicación";
     botonUbi.addEventListener("click", function(evento) {
@@ -227,6 +250,7 @@ function cargarFalla(boceto, nombreFalla, id, anyo, sector) {
     divFalla.appendChild(nombre);
     divFalla.appendChild(zona);
     divFalla.appendChild(anyoF);
+    divFalla.appendChild(starsP);
     divFalla.appendChild(botonUbi);
 
 
@@ -241,6 +265,10 @@ function cargarFalla(boceto, nombreFalla, id, anyo, sector) {
         //Función para habilitar la imagen de fondo
         document.getElementById("imgBackground").style.display = "block";
     }
+}
+
+function enviarPuntuacion() {
+    console.log("puntuacion");
 }
 //Funcion inicial
 function init() {

@@ -7,7 +7,11 @@
     <meta name="description" content="Nuestro NodeJS">
     <meta name="keywords" content="html nodejs">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  
+
     <!-- Librerias -->
+    
     <link rel="icon" type="image/png" href="media/favicon.png">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
 
@@ -34,12 +38,12 @@
                 <option value="Todas">Todas</option> 
             </select><br>
             <p>Año de fundación</p>
-            <input class="section" id="fecha1" type="number" min="1800" max="2020" name="año" placeholder="Desde "><br>
-            <input class="section" id="fecha2" type="number" min="1800" max="2020" name="año1" placeholder="Hasta"><br><br>
+            <input class="section" id="fecha1" type="number" min="1800" max="2020" name="año" pattern="[0-9]{4}"  placeholder="Desde "><br>
+            <input class="section" id="fecha2" type="number" min="1800" max="2020" name="año1" pattern="[0-9]{4}" placeholder="Hasta"><br><br>
 
             <input type="radio" id="fallaPrincipal" name="fallaPri" value="principal" checked="checked"> Principal<br>
             <input type="radio" id="fallaInfantil" name="fallaPri" value="infantil"> Infantil <br>
-
+            
         </form>
     </div>
 
