@@ -19,7 +19,7 @@ function crearMapa() {
 
     let tilerMapUrl = 'https://api.maptiler.com/maps/streets/256/{z}/{x}/{y}.png?key=iKFTul3NW3eysK9xpmVO';
     L.tileLayer(tilerMapUrl, {
-        attribution: 'Map data ©Copyright Oscar Mazuecos',
+        attribution: 'Map data © OpenStreetMap contributors, Imagery © Kartena',
     }).addTo(map);
 
     L.control.scale().addTo(map);

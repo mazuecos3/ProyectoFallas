@@ -1,11 +1,24 @@
        $colorTexto: black;
        $estilaTexto: Arial;
        $negrita: bold;
-       
-       $backgroundColor: #f0deb7;
+       $backgroundColor:"";
        %tamañoBusqueda {
            width: 98%;
        }
+       
+       //Empresas chulu y evil
+       $empresa:"evil";
+       $logo:"";
+       @if ($empresa==chulu) {
+           $logo: "../media/cthulhu.png";
+           $backgroundColor: rgb(46, 97, 66);
+       }
+       
+       @else if ($empresa==evil) {
+           $backgroundColor: rgb(189, 97, 121);
+           $logo: "../media/evilcorp.png";
+       }
+       
        // COLOR INICIAL #f0deb7
        // Color INICIAL +Oscuro #dfc793
        body {
@@ -17,15 +30,15 @@
            background-color: $backgroundColor;
        }
        
-
        #logo {
-      
-        
-        width: 50px;
-        height: 50px;
-      
-      }
-      
+           position: absolute;
+           top: 10px;
+           left: 10px;
+           width: 200px;
+           height: 200px;
+           content: url($logo);
+       }
+       
        #capaProtectora {
            position: fixed;
            width: 100%;
@@ -38,15 +51,15 @@
        }
        
        #map {
-        z-index: 100;
-        position: fixed;
-        width: 70%;
-        height: 70%;
-        top: 15%;
-        left: 15%;
-        background-color: rgba(214,203,203,0.801);
-        padding: 5px;
-        visibility: hidden;
+           z-index: 100;
+           position: fixed;
+           width: 70%;
+           height: 70%;
+           top: 15%;
+           left: 15%;
+           background-color: rgba(214, 203, 203, 0.801);
+           padding: 5px;
+           visibility: hidden;
        }
        
        .busqueda {
@@ -60,13 +73,13 @@
                font-family: Ink Free;
                text-align: center;
                font-size: 4em;
-               -webkit-box-shadow: 0px 0px 9px 9px rgba(223, 199, 147, 1);
-               -moz-box-shadow: 0px 0px 9px 9px rgba(223, 199, 147, 1);
-               box-shadow: 0px 0px 9px 9px rgba(223, 199, 147, 1);
+               -webkit-box-shadow: 0px 0px 9px 9px #fbfbfb;
+               -moz-box-shadow: 0px 0px 9px 9px #fbfbfb;
+               box-shadow: 0px 0px 9px 9px #fbfbfb;
                border-radius: 20px;
            }
            .section {
-               background: #dfc793;
+               background: #fbfbfb;
                @extend %tamañoBusqueda;
            }
        }
@@ -75,7 +88,7 @@
            display: block;
            margin-left: auto;
            margin-right: auto;
-           opacity: 0.5;
+           opacity: 0.6;
            width: 300px;
        }
        
@@ -94,9 +107,9 @@
            .falla {
                display: grid;
                grid-template-rows: 1fr 30px 30px 30px 50px 50px;
-               -webkit-box-shadow: 0px 0px 9px 9px rgba(223, 199, 147, 1);
-               -moz-box-shadow: 0px 0px 9px 9px rgba(223, 199, 147, 1);
-               box-shadow: 0px 0px 9px 9px rgba(223, 199, 147, 1);
+               -webkit-box-shadow: 0px 0px 9px 9px #fbfbfb;
+               -moz-box-shadow: 0px 0px 9px 9px #fbfbfb;
+               box-shadow: 0px 0px 9px 9px #fbfbfb;
                border-radius: 2%;
                margin-top: 20px;
                align-content: center;
@@ -133,37 +146,45 @@
                top: 1px;
            }
        }
-
+       
        .puntuacion {
-       //de izquierda a derecha
-        direction: rtl;
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-      }
-    
-      .radioEstrellas {
-        display: none;
-      }
-      
-      .radioEstrellas:checked ~ label {
-        color: orange;
-      }
-      
-      .labelEstrellas {
-        cursor: pointer;
-        color: grey;
-        font-size: 1.75em;
-      }
-      
-      .labelEstrellas:hover {
-        color: orange;
-      }
-      
-      .labelEstrellas:hover ~ label {
-        color: orange;
-      }
-      
-      .rating {
-        border: none;
-      }
+           //de izquierda a derecha
+           direction: rtl;
+           display: flex;
+           flex-direction: row;
+           justify-content: center;
+       }
+       
+       .radioEstrellas {
+           display: none;
+       }
+       
+       .radioEstrellas:checked~label {
+           color: yellow;
+       }
+       
+       .labelEstrellas {
+           cursor: pointer;
+           color: #fbfbfb;
+           font-size: 1.75em;
+       }
+       
+       .labelEstrellas:hover {
+           color: yellow;
+       }
+       
+       .labelEstrellas:hover~label {
+           color: yellow;
+       }
+       
+       .rating {
+           border: none;
+       }
+       
+       @media only screen and (max-width: 600px) {
+           #logo {
+               position: relative;
+               text-align: center;
+               margin: 0 auto;
+           }
+       }
