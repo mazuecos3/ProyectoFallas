@@ -270,6 +270,20 @@ function cargarFalla(boceto, nombreFalla, id, anyo, sector) {
 function enviarPuntuacion() {
     console.log("puntuacion");
 }
+function activarFiltrosMovil() {
+    let divResults = document.querySelector(".busqueda");
+   
+    
+       
+        if (divResults.style.display != "block") {
+            divResults.style.display = "block";
+        } else {
+            divResults.style.display = "none";
+        }
+   
+    
+  
+}
 //Funcion inicial
 function init() {
     //llamamos a la funcion buscar nada mas empezar porque el radiobuton principal va a estar pulsado por defecto
@@ -285,6 +299,7 @@ function init() {
     //Funcion perdida de foco
     document.getElementById("fecha1").addEventListener("blur", principal);
     document.getElementById("fecha2").addEventListener("blur", principal);
+    document.getElementById("botonHamburguesa").addEventListener("click", activarFiltrosMovil);
 
 
 }

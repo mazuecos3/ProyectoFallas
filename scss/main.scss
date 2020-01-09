@@ -5,19 +5,32 @@
        %tamañoBusqueda {
            width: 98%;
        }
+       $bordesColor:"";
        
        //Empresas chulu y evil
-       $empresa:"evil";
+       $empresa:"miaPersonal";
        $logo:"";
+       $logoMenu:"";
+       
        @if ($empresa==chulu) {
            $logo: "../media/cthulhu.png";
+           $logoMenu: "../media/hamburguesa.png";
            $backgroundColor: rgb(46, 97, 66);
-       }
-       
+           $bordesColor:#fbfbfb;
+       } 
        @else if ($empresa==evil) {
            $backgroundColor: rgb(189, 97, 121);
            $logo: "../media/evilcorp.png";
+           $logoMenu: "../media/evilcorp.png";
+           $bordesColor:#fbfbfb;
        }
+       @else if ($empresa==miaPersonal) {
+        $backgroundColor: #f0deb7;
+        $logo: "../media/miaPersonal.png";
+        $logoMenu: "../media/miaPersonal.png";
+        $bordesColor:#dfc793;
+       
+    }
        
        // COLOR INICIAL #f0deb7
        // Color INICIAL +Oscuro #dfc793
@@ -29,7 +42,10 @@
            font-weight: $negrita;
            background-color: $backgroundColor;
        }
+       #botonHamburguesa{
+        display:none;
        
+    }
        #logo {
            position: absolute;
            top: 10px;
@@ -61,25 +77,29 @@
            padding: 5px;
            visibility: hidden;
        }
-       
+       h1 {
+             
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 360px;
+        font-family: Ink Free;
+        text-align: center;
+        font-size: 4em;
+        -webkit-box-shadow: 0px 0px 9px 9px $bordesColor;
+        -moz-box-shadow: 0px 0px 9px 9px $bordesColor;
+        box-shadow: 0px 0px 9px 9px $bordesColor;
+        border-radius: 20px;
+    }
+   
        .busqueda {
-           margin-right: 2%;
-           margin-left: 2%;
-           h1 {
-               display: block;
-               margin-left: auto;
-               margin-right: auto;
-               width: 360px;
-               font-family: Ink Free;
-               text-align: center;
-               font-size: 4em;
-               -webkit-box-shadow: 0px 0px 9px 9px #fbfbfb;
-               -moz-box-shadow: 0px 0px 9px 9px #fbfbfb;
-               box-shadow: 0px 0px 9px 9px #fbfbfb;
-               border-radius: 20px;
-           }
+        display: block;
+        margin-right: 2%;
+        margin-left: 2%;
+          
+          
            .section {
-               background: #fbfbfb;
+               background: $bordesColor;
                @extend %tamañoBusqueda;
            }
        }
@@ -107,9 +127,9 @@
            .falla {
                display: grid;
                grid-template-rows: 1fr 30px 30px 30px 50px 50px;
-               -webkit-box-shadow: 0px 0px 9px 9px #fbfbfb;
-               -moz-box-shadow: 0px 0px 9px 9px #fbfbfb;
-               box-shadow: 0px 0px 9px 9px #fbfbfb;
+               -webkit-box-shadow: 0px 0px 9px 9px $bordesColor;
+               -moz-box-shadow: 0px 0px 9px 9px $bordesColor;
+               box-shadow: 0px 0px 9px 9px $bordesColor;
                border-radius: 2%;
                margin-top: 20px;
                align-content: center;
@@ -180,11 +200,31 @@
        .rating {
            border: none;
        }
-       
-       @media only screen and (max-width: 600px) {
+       //Version Movil / ipads
+       @media only screen and (max-width: 750px) {
            #logo {
                position: relative;
                text-align: center;
                margin: 0 auto;
            }
+           
+           .busqueda {
+            display: none;
+            border-radius: 20%;           
+            margin-right: 2%;
+            margin-left: 2%;   
+            }
+            #botonHamburguesa{
+                visibility: visible;
+                display: block;
+                width: 50px;
+                height: 50px;
+                margin: 0 auto;      
+                background-image: url($logoMenu);
+                background-repeat:no-repeat;
+                background-position:center;
+                background-size: contain;
+
+            }
+        
        }
