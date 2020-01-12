@@ -166,38 +166,19 @@
            }
        }
        
-       .puntuacion {
-           //de izquierda a derecha
-           direction: rtl;
-           display: flex;
-           flex-direction: row;
-           justify-content: center;
-       }
-       
-       .radioEstrellas {
-           display: none;
-       }
-       
-       .radioEstrellas:checked~label {
-           color: yellow;
-       }
-       
-       .labelEstrellas {
+       //Falta darle funcionalidad y algo de scss a las estrellas
+       .estrellas {
            cursor: pointer;
            color: #fbfbfb;
            font-size: 1.75em;
        }
        
-       .labelEstrellas:hover {
+       .estrellas:hover {
            color: yellow;
        }
        
-       .labelEstrellas:hover~label {
+       .estrellas:hover~label {
            color: yellow;
-       }
-       
-       .rating {
-           border: none;
        }
        
        //Version Movil / ipads

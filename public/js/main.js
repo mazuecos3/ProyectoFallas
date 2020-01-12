@@ -217,24 +217,16 @@ function cargarFalla(boceto, nombreFalla, id, anyo, sector) {
     let starsP = document.createElement('p');
     starsP.classList.add('puntuacion');
 
-    // Creamos dichas estrellas (radioButton, label)
+    // Creamosestrellas 
     for (let i = 0; i < 5; i++) {
-        let radio = document.createElement('input');
-        radio.setAttribute('type', "radio");
-        radio.setAttribute('id', 'radio' + i);
-        radio.setAttribute('name', 'estrellas');
-        radio.setAttribute('value', '' + i);
-        radio.classList.add('radioEstrellas');
 
-        let label = document.createElement('label');
-        label.setAttribute('for', 'radio' + i);
-        label.setAttribute('value', i);
-        label.innerText = '★';
-        label.addEventListener('click', enviarPuntuacion);
-        label.classList.add('labelEstrellas');
+        let estrella = document.createElement('estrella');
+        estrella.setAttribute('value', i);
+        estrella.innerText = '★';
+        estrella.addEventListener('click', enviarPuntuacion);
+        estrella.classList.add('estrellas');
 
-        starsP.appendChild(radio);
-        starsP.appendChild(label);
+        starsP.appendChild(estrella);
     }
 
     let botonUbi = document.createElement("button");
@@ -266,23 +258,24 @@ function cargarFalla(boceto, nombreFalla, id, anyo, sector) {
         document.getElementById("imgBackground").style.display = "block";
     }
 }
-
+//funcionabilidad con mongo intentar siguientes clases muchas dudas.
 function enviarPuntuacion() {
     console.log("puntuacion");
 }
+
 function activarFiltrosMovil() {
     let divResults = document.querySelector(".busqueda");
-   
-    
-       
-        if (divResults.style.display != "block") {
-            divResults.style.display = "block";
-        } else {
-            divResults.style.display = "none";
-        }
-   
-    
-  
+
+
+
+    if (divResults.style.display != "block") {
+        divResults.style.display = "block";
+    } else {
+        divResults.style.display = "none";
+    }
+
+
+
 }
 //Funcion inicial
 function init() {
